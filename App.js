@@ -8,12 +8,18 @@ const word = {en : "One" , vn : "Một" , isMemorized : true}
 // isMemorized : true = green
 // isMemorized : false : red
 export default class App extends Component {
+  // setVn(){
+  //   if(word.isMemorized){
+  //     return <Text style={{color : "green" , fontSize : 20}}>{word.vn}</Text>
+  //   }
+  //   return <Text style={{color : "red" , fontSize : 20}}>{word.vn}</Text>
+  // }
   render() {
-  
     return (
         <View style={{flex : 1 , flexDirection : "row" , justifyContent : "space-around" ,alignItems : "center"}}>
           <Text style={{color : "green" , fontSize : 20}}>{word.en}</Text>
-          <Text style={{color : "red" , fontSize : 20}}>{word.vn}</Text>
+          {/* {this.setVn()} */}
+          <Text style={{color : word.isMemorized ? "green" : "red" , fontSize : 20}}>{word.vn}</Text>
         </View>
     );
   }
