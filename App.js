@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import Word from './components/Word';
 
-const word = {en : "One" , vn : "Một" , isMemorized : false}
+const word = {en : "One" , vn : "Một" , isMemorized : true}
 
 export default class App extends Component {
-
   render() {
     return (
         <View style={{flex : 1 }}>
-            <Word/>
+            <Word en={word.en} vn={word.vn} isMemorized={word.isMemorized} />
+            <Word en="Two" vn="Hai" isMemorized={false}/>
         </View>
     );
   }
