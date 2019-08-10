@@ -1,25 +1,15 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import Design from './components/Design';
+import Word from './components/Word';
 
-const word = {en : "One" , vn : "Một" , isMemorized : true}
+const word = {en : "One" , vn : "Một" , isMemorized : false}
 
-//set color cho word.vn 
-// isMemorized : true = green
-// isMemorized : false : red
 export default class App extends Component {
-  // setVn(){
-  //   if(word.isMemorized){
-  //     return <Text style={{color : "green" , fontSize : 20}}>{word.vn}</Text>
-  //   }
-  //   return <Text style={{color : "red" , fontSize : 20}}>{word.vn}</Text>
-  // }
+
   render() {
     return (
-        <View style={{flex : 1 , flexDirection : "row" , justifyContent : "space-around" ,alignItems : "center"}}>
-          <Text style={{color : "green" , fontSize : 20}}>{word.en}</Text>
-          {/* {this.setVn()} */}
-          <Text style={{color : word.isMemorized ? "green" : "red" , fontSize : 20}}>{word.vn}</Text>
+        <View style={{flex : 1 }}>
+            <Word/>
         </View>
     );
   }
