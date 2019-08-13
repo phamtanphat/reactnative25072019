@@ -38,6 +38,13 @@ export default class List extends PureComponent {
                 </View>
                 <View style={{flexDirection : 'row' , justifyContent : 'space-around' , paddingBottom : 5}}>
                         <TouchableOpacity
+                            onPress={() =>{
+                                const newWords = this.state.words.map(item => {
+                                    if(item.id !== word.id) return item
+                                    return {...item , isMemorized : !item.isMemorized}
+                                })
+                                this.setState({words : newWords})
+                            }}
                             style={{backgroundColor : word.isMemorized ? "green" : "red" , padding : 10 , borderRadius : 5}}
                         >
                             <Text style={{fontSize : 20 , color : 'white'}}>{word.isMemorized ? "Forgot" : "isMemorized"}</Text>
