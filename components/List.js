@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import { Text, View , Dimensions , TouchableOpacity , ScrollView} from 'react-native'
 
+
+const DeviceHeight = Dimensions.get('window').height
 export default class List extends PureComponent {
     constructor(props){
         super(props)
@@ -15,35 +17,45 @@ export default class List extends PureComponent {
             ]
         }
     }
+    removeWord(id){
+        const words = this.state.words.filter(item => {
+            if(item.id == id) return false
+            return true
+        })
+        this.setState({words})
+    }
+    getWordItem(word){
+        return (   
+            <View 
+                key={word.id}
+                style={{ flexDirection : 'column' , height : DeviceHeight * 0.2 , margin : 10 , backgroundColor : 'gainsboro' , padding : 10 , borderRadius : 5}}>
+                <View style={{flexDirection : 'row' , justifyContent : 'space-around' , paddingBottom : 5}}>
+                    <Text style={{fontSize : 30 , color :  'green' }}>{word.en}</Text>
+                    <Text 
+                        style={{fontSize : 30 , color :  'red' }}>
+                            {word.isMemorized ? "----" : word.vn}
+                    </Text>
+                </View>
+                <View style={{flexDirection : 'row' , justifyContent : 'space-around' , paddingBottom : 5}}>
+                        <TouchableOpacity
+                            style={{backgroundColor : word.isMemorized ? "green" : "red" , padding : 10 , borderRadius : 5}}
+                        >
+                            <Text style={{fontSize : 20 , color : 'white'}}>{word.isMemorized ? "Forgot" : "isMemorized"}</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity  
+                            onPress={() => this.removeWord(word.id)}
+                            style={{backgroundColor : "orange" , padding : 10 , borderRadius : 5}}
+                        >
+                            <Text style={{fontSize : 25 , color :  'white' }}>Remove</Text>
+                        </TouchableOpacity>
+                </View>
+            </View>
+        )
+    }
     render() {
-        const DeviceHeight = Dimensions.get('window').height
         return (
             <ScrollView style={{flex : 1 }}>
-                {this.state.words.map(word =>{
-                     return (   
-                        <View style={{ flexDirection : 'column' , height : DeviceHeight * 0.2 , margin : 10 , backgroundColor : 'gainsboro' , padding : 10 , borderRadius : 5}}>
-                            <View style={{flexDirection : 'row' , justifyContent : 'space-around' , paddingBottom : 5}}>
-                                <Text style={{fontSize : 30 , color :  'green' }}>{word.en}</Text>
-                                <Text 
-                                    style={{fontSize : 30 , color :  'red' }}>
-                                        {word.isMemorized ? "----" : word.vn}
-                                </Text>
-                            </View>
-                            <View style={{flexDirection : 'row' , justifyContent : 'space-around' , paddingBottom : 5}}>
-                                    <TouchableOpacity
-                                        style={{backgroundColor : word.isMemorized ? "green" : "red" , padding : 10 , borderRadius : 5}}
-                                    >
-                                        <Text style={{fontSize : 20 , color : 'white'}}>{word.isMemorized ? "Forgot" : "isMemorized"}</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity
-                                        style={{backgroundColor : "orange" , padding : 10 , borderRadius : 5}}
-                                    >
-                                        <Text style={{fontSize : 25 , color :  'white' }}>Remove</Text>
-                                    </TouchableOpacity>
-                            </View>
-                        </View>
-                    )
-                })}
+                {this.state.words.map(word =>this.getWordItem(word))}
             </ScrollView>
                 
             
