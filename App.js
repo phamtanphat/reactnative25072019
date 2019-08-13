@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import Word from './components/Word';
 import HandleArray from './components/HandleArray';
-
+import Box from './components/Box';
  const words = [
   {id : "a1" , en : "One" , vn : "Một" , isMemorized : true},
   {id : "a2" , en : "Two" , vn : "Hai" , isMemorized : false},
@@ -13,15 +13,7 @@ import HandleArray from './components/HandleArray';
 export default class App extends Component {
   render() {
     return (
-        <View style={{flex : 1 }}>
-            {words.map(function(word) {
-                return <Word 
-                          key={word.id} 
-                          en={word.en} 
-                          vn={word.vn} 
-                          isMemorized={word.isMemorized}/>
-            })}
-        </View>
+       <Box/>
     );
   }
 }
