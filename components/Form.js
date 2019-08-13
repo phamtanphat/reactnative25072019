@@ -49,6 +49,7 @@ export default class Form extends PureComponent {
         return (
             <View style={{flexDirection : 'column' , justifyContent : 'center' , alignItems : 'center'}}>
                 {this.getShouldShowForm()}
+                <Text>{JSON.stringify(this.state)}</Text>
                 
             </View>
         )
