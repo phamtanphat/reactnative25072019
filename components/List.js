@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Text, View , Dimensions , TouchableOpacity , ScrollView , TextInput} from 'react-native'
+import { Text, View , Dimensions , TouchableOpacity , ScrollView , TextInput , SafeAreaView} from 'react-native'
 
 
 const DeviceHeight = Dimensions.get('window').height
@@ -20,6 +20,7 @@ export default class List extends PureComponent {
             txtEn : "",
             txtVn : ""
         }
+        this.toggleForm = this.toggleForm.bind(this)
     }
     removeWord(id){
         const words = this.state.words.filter(item => {
@@ -64,6 +65,9 @@ export default class List extends PureComponent {
             </View>
         )
     }
+    toggleForm(){
+        this.setState({shouldShowForm : !this.state.shouldShowForm})
+    }
     getShouldShowForm(){
         if(this.state.shouldShowForm){
             return(
@@ -87,9 +91,7 @@ export default class List extends PureComponent {
                             <Text style={{fontSize : DeviceWidth * 0.08 , color : 'white' }}>Add word</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() => {
-                                this.setState({shouldShowForm : !this.state.shouldShowForm})
-                            }}
+                            onPress={this.toggleForm}
                             style={{backgroundColor : "#C82333", padding : 10 , borderRadius : 8}}
                         >
                             <Text style={{fontSize : DeviceWidth * 0.08 , color : 'white'}}>Cancel</Text>
@@ -101,9 +103,7 @@ export default class List extends PureComponent {
             return(
                 <View style={{alignItems : "center" }}>
                     <TouchableOpacity
-                        onPress={() => {
-                            this.setState({shouldShowForm : !this.state.shouldShowForm})
-                        }}
+                        onPress={this.toggleForm}
                         style={{backgroundColor : "#218838" , padding : 10 , borderRadius : 8 ,width : DeviceWidth * 0.7 }}
                     >
                         <Text style={{fontSize : DeviceWidth * 0.08 , color : 'white' ,textAlign : 'center'}}>+</Text>
@@ -115,10 +115,13 @@ export default class List extends PureComponent {
     }
     render() {
         return (
-            <ScrollView style={{flex : 1 }}>
-                {this.getShouldShowForm()}
-                {this.state.words.map(word =>this.getWordItem(word))}
-            </ScrollView>
+            <SafeAreaView style={{flex : 1}}>
+                <ScrollView style={{flex : 1 }}>
+                    {this.getShouldShowForm()}
+                    {this.state.words.map(word =>this.getWordItem(word))}
+                </ScrollView>
+            </SafeAreaView>
+            
                 
             
         )
