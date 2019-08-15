@@ -86,6 +86,20 @@ export default class List extends PureComponent {
                         </View>
                     <View style={{flexDirection : "row" , marginTop : DeviceWidth * 0.01 , alignItems : "center" , justifyContent : "center"}}>
                         <TouchableOpacity
+                            onPress={() => {
+                                const txtEn = this.state.txtEn
+                                const txtVn = this.state.txtVn
+                                if(txtEn.length <= 0 && txtVn.length<=0) return 
+                                const newWord = {
+                                    id : Math.random(),
+                                    en : txtEn,
+                                    vn  : txtVn,
+                                    isMemorized : false
+                                }
+                                const newWords = this.state.words.concat(newWord)
+                                this.setState({words : newWords})
+                                
+                            }}
                             style={{backgroundColor : "#218838" , padding : 10 , borderRadius : 8 , marginRight : DeviceWidth * 0.03}}
                         >
                             <Text style={{fontSize : DeviceWidth * 0.08 , color : 'white' }}>Add word</Text>
