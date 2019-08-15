@@ -87,8 +87,7 @@ export default class List extends PureComponent {
                     <View style={{flexDirection : "row" , marginTop : DeviceWidth * 0.01 , alignItems : "center" , justifyContent : "center"}}>
                         <TouchableOpacity
                             onPress={() => {
-                                const txtEn = this.state.txtEn
-                                const txtVn = this.state.txtVn
+                                const {txtEn , txtVn} = this.state
                                 if(txtEn.length <= 0 && txtVn.length<=0) return 
                                 const newWord = {
                                     id : Math.random(),
@@ -96,7 +95,9 @@ export default class List extends PureComponent {
                                     vn  : txtVn,
                                     isMemorized : false
                                 }
-                                const newWords = this.state.words.concat(newWord)
+                                const newWords = []
+                                Object.assign(newWords , this.state.words)
+                                newWords.unshift(newWord)
                                 this.setState({words : newWords})
                                 
                             }}
