@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import List from './components/List';
+import Form from './components/Form';
+import MyFlatlist from './components/MyFlatlist';
 
 
 export default class App extends Component {
   render() {
     return (
-        <List/>
+        <MyFlatlist/>
     );
   }
 }
