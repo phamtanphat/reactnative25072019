@@ -16,7 +16,7 @@ export default class List extends PureComponent {
                 {id : "a5" , en : "Five" , vn : "Năm" , isMemorized : true},
                 {id : "a6" , en : "Six" , vn : "Sáu" , isMemorized : true},
             ],
-            shouldShowForm : true,
+            shouldShowForm : false,
             txtEn : "",
             txtVn : ""
         }
@@ -87,6 +87,9 @@ export default class List extends PureComponent {
                             <Text style={{fontSize : DeviceWidth * 0.08 , color : 'white' }}>Add word</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
+                            onPress={() => {
+                                this.setState({shouldShowForm : !this.state.shouldShowForm})
+                            }}
                             style={{backgroundColor : "#C82333", padding : 10 , borderRadius : 8}}
                         >
                             <Text style={{fontSize : DeviceWidth * 0.08 , color : 'white'}}>Cancel</Text>
@@ -96,11 +99,17 @@ export default class List extends PureComponent {
             )
         }else{
             return(
-                <TouchableOpacity
-                    style={{backgroundColor : "#218838" , padding : 10 , borderRadius : 8 ,width : DeviceWidth * 0.7 }}
-                >
-                     <Text style={{fontSize : DeviceWidth * 0.08 , color : 'white' ,textAlign : 'center'}}>+</Text>
-                </TouchableOpacity>
+                <View style={{alignItems : "center" }}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.setState({shouldShowForm : !this.state.shouldShowForm})
+                        }}
+                        style={{backgroundColor : "#218838" , padding : 10 , borderRadius : 8 ,width : DeviceWidth * 0.7 }}
+                    >
+                        <Text style={{fontSize : DeviceWidth * 0.08 , color : 'white' ,textAlign : 'center'}}>+</Text>
+                    </TouchableOpacity>
+                </View>
+               
             )
         }
     }
