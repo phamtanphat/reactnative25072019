@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Text, View , Dimensions , TouchableOpacity , ScrollView , TextInput , SafeAreaView} from 'react-native'
 import { Dropdown } from 'react-native-material-dropdown';
+import Word from './Word';
 
 const DeviceHeight = Dimensions.get('window').height
 const DeviceWidth = Dimensions.get("window").width
@@ -43,35 +44,7 @@ export default class List extends PureComponent {
         })
         this.setState({words : newWords})
     }
-    getWordItem(word){
-        return (   
-            <View 
-                key={word.id}
-                style={{ flexDirection : 'column' , height : DeviceHeight * 0.2 , margin : 10 , backgroundColor : 'gainsboro' , padding : 10 , borderRadius : 5}}>
-                <View style={{flexDirection : 'row' , justifyContent : 'space-around' , paddingBottom : 5}}>
-                    <Text style={{fontSize : 30 , color :  'green' }}>{word.en}</Text>
-                    <Text 
-                        style={{fontSize : 30 , color :  'red' }}>
-                            {word.isMemorized ? "----" : word.vn}
-                    </Text>
-                </View>
-                <View style={{flexDirection : 'row' , justifyContent : 'space-around' , paddingBottom : 5}}>
-                        <TouchableOpacity
-                            onPress={() =>this.toggleWord(word.id)}
-                            style={{backgroundColor : word.isMemorized ? "green" : "red" , padding : 10 , borderRadius : 5}}
-                        >
-                            <Text style={{fontSize : 20 , color : 'white'}}>{word.isMemorized ? "Forgot" : "isMemorized"}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity  
-                            onPress={() => this.removeWord(word.id)}
-                            style={{backgroundColor : "orange" , padding : 10 , borderRadius : 5}}
-                        >
-                            <Text style={{fontSize : 25 , color :  'white' }}>Remove</Text>
-                        </TouchableOpacity>
-                </View>
-            </View>
-        )
-    }
+    
     toggleForm(){
         this.setState({shouldShowForm : !this.state.shouldShowForm})
     }
@@ -155,7 +128,11 @@ export default class List extends PureComponent {
                 <ScrollView style={{flex : 1 }}>
                     {this.getShouldShowForm()}
                     {this.getFilter()}
-                    {this.state.words.map(word =>this.getWordItem(word))}
+                    {this.state.words.filter(item => {
+                        if(this.state.filterPick === 'Show_Forgot' && !item.isMemorized) return false 
+                        if(this.state.filterPick === 'Show_Memorized' && item.isMemorized) return false 
+                        return true
+                    }).map(word => <Word word={word} key={word.id}/>)}
                 </ScrollView>
             </SafeAreaView>
             
