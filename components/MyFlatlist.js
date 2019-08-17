@@ -36,6 +36,10 @@ export default class MyFlatlist extends PureComponent {
                             <Text style={{fontSize : 20 , color : 'white'}}>{word.isMemorized ? "Forgot" : "isMemorized"}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity  
+                            onPress={() => {
+                                const newWords = this.state.words.filter(item => item.id !== word.id)
+                                this.setState({words : newWords})
+                            }}
                             style={{backgroundColor : "orange" , padding : 10 , borderRadius : 5}}
                         >
                             <Text style={{fontSize : 25 , color :  'white' }}>Remove</Text>

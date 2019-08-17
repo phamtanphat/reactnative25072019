@@ -21,12 +21,22 @@ export default class Box extends PureComponent {
                             <Text style={{color : "white", fontSize : 30}} >Cộng</Text>
                         </View>                                                
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.setState({count : this.state.count - 1})
+                            console.log(this.state.count)  
+                        }}
+                    >
                         <View style={{backgroundColor : "red" , padding : 5 , borderRadius : 5 }}>
                             <Text style={{color : "white", fontSize : 30}} >Trừ</Text>
                         </View>                                                
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.setState({count : 0})
+                            console.log(this.state.count)  
+                        }}
+                    >
                         <View style={{backgroundColor : "orange" , padding : 5 , borderRadius : 5 }}>
                             <Text style={{color : "white", fontSize : 30}} >Reset</Text>
                         </View>                                                

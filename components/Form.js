@@ -2,11 +2,14 @@ import React, { PureComponent } from 'react'
 import { Text, View , TouchableOpacity , TextInput , Dimensions} from 'react-native'
 
 const DeviceWidth = Dimensions.get("window").width
+
 export default class Form extends PureComponent {
     constructor(props){
         super(props)
         this.state = {
-            shouldShowForm : true
+            shouldShowForm : true,
+            txtEn : "",
+            txtVn : ""
         }
     }
     getShouldShowForm(){
@@ -16,8 +19,12 @@ export default class Form extends PureComponent {
                     <View style={{flexDirection : 'column' , backgroundColor : 'gainsboro' , padding : 10 , justifyContent : 'center' ,  alignItems : 'center'  }}>
                         <TextInput 
                             style={{height: DeviceWidth  * 0.15 , width : DeviceWidth * 0.7, backgroundColor: 'white', borderRadius :2 , paddingLeft : DeviceWidth * 0.05 , marginBottom : DeviceWidth * 0.03  , fontSize : 20}}
+                            value={this.state.txtEn}
+                            onChangeText={text => this.setState({txtEn : text})}
                             placeholder="English"/>
                         <TextInput 
+                            value={this.state.txtVn}
+                            onChangeText={text => this.setState({txtVn : text})}
                             style={{height: DeviceWidth  * 0.15 , width : DeviceWidth * 0.7, backgroundColor: 'white', borderRadius :2 , paddingLeft : DeviceWidth * 0.05 , fontSize : 20}}
                             placeholder="Vietnamese"/>
                         </View>

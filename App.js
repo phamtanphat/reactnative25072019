@@ -8,7 +8,7 @@ import MyFlatlist from './components/MyFlatlist';
 export default class App extends Component {
   render() {
     return (
-        <MyFlatlist/>
+        <List/>
     );
   }
 }
