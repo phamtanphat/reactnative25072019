@@ -23,8 +23,9 @@ export default class List extends PureComponent {
             filterPick : 'Show_All'
         }
         this.toggleForm = this.toggleForm.bind(this)
+        this.onRemoveWord = this.onRemoveWord.bind(this)
     }
-    removeWord(id){
+    onRemoveWord(id){
         const words = this.state.words.filter(item => {
             if(item.id == id) return false
             return true
@@ -52,7 +53,10 @@ export default class List extends PureComponent {
                         if(this.state.filterPick === 'Show_Forgot' && !item.isMemorized) return false 
                         if(this.state.filterPick === 'Show_Memorized' && item.isMemorized) return false 
                         return true
-                    }).map(word => <Word word={word} key={word.id}/>)}
+                    }).map(word => <Word 
+                                        word={word} 
+                                        key={word.id}
+                                        onRemoveWord={this.onRemoveWord}/>)}
                 </ScrollView>
             </SafeAreaView>
         )

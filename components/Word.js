@@ -5,6 +5,7 @@ const DeviceHeight = Dimensions.get('window').height
 export default class Word extends PureComponent {
     render() {
         let {en , vn , isMemorized , id} = this.props.word
+        let {onRemoveWord} = this.props
         return (
             <View 
                 key={id}
@@ -24,7 +25,7 @@ export default class Word extends PureComponent {
                             <Text style={{fontSize : 20 , color : 'white'}}>{ isMemorized ? "Forgot" : "isMemorized"}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity  
-                        
+                            onPress={() => onRemoveWord(id)}
                             style={{backgroundColor : "orange" , padding : 10 , borderRadius : 5}}
                         >
                             <Text style={{fontSize : 25 , color :  'white' }}>Remove</Text>

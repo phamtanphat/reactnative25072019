@@ -10,7 +10,7 @@ import Box from './components/Box';
 export default class App extends Component {
   render() {
     return (
-        <Box/>
+        <List/>
     );
   }
 }
