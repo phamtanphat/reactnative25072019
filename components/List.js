@@ -22,9 +22,11 @@ export default class List extends PureComponent {
             shouldShowForm : false,
             filterPick : 'Show_All'
         }
-        this.toggleForm = this.toggleForm.bind(this)
+        this.onToggleForm = this.onToggleForm.bind(this)
         this.onRemoveWord = this.onRemoveWord.bind(this)
         this.onToggleWord = this.onToggleWord.bind(this)
+        this.onAddWord = this.onAddWord.bind(this)
+        this.onFilterMode = this.onFilterMode.bind(this)
     }
     onRemoveWord(id){
         const words = this.state.words.filter(item => {
@@ -40,15 +42,28 @@ export default class List extends PureComponent {
         })
         this.setState({words : newWords})
     }
-    toggleForm(){
+    onToggleForm(){
         this.setState({shouldShowForm : !this.state.shouldShowForm})
+    }
+    onAddWord(word){
+        const newWords = Object.assign([] , this.state.words)
+        newWords.unshift(word)
+        this.setState({words : newWords , shouldShowForm : false})
+    }
+    onFilterMode(filtermode){
+        this.setState({filterPick : filtermode})
     }
     render() {
         return (
             <SafeAreaView style={{flex : 1}}>
                 <ScrollView style={{flex : 1}}>
-                    <Form shouldShowForm={this.state.shouldShowForm}/>
-                    <Filter filterPick={this.state.filterPick}/>
+                    <Form
+                        onAddWord={this.onAddWord}
+                        onToggleForm={this.onToggleForm} 
+                        shouldShowForm={this.state.shouldShowForm}/>
+                    <Filter 
+                        onFilterMode={this.onFilterMode}
+                        filterPick={this.state.filterPick}/>
                     {this.state.words.filter(item => {
                         if(this.state.filterPick === 'Show_Forgot' && !item.isMemorized) return false 
                         if(this.state.filterPick === 'Show_Memorized' && item.isMemorized) return false 

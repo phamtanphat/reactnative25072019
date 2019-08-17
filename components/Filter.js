@@ -15,6 +15,7 @@ export default class Filter extends PureComponent {
         }
     }
     render() {
+        const {onFilterMode} = this.props
         return (
             <View style={{flex : 1 , justifyContent : 'center' , alignItems : 'center' , marginTop : DeviceWidth * 0.05 , marginBottom : DeviceWidth * 0.05}}>
                  <Dropdown
@@ -23,6 +24,7 @@ export default class Filter extends PureComponent {
                     inputContainerStyle={{ borderBottomColor: 'transparent' }}
                     dropdownOffset={{top: DeviceWidth * 0.01, left : 0}}
                     data={this.state.filterMode}
+                    onChangeText={text => onFilterMode(text)}
     
                 />
             </View>

@@ -10,9 +10,25 @@ export default class Form extends PureComponent {
             txtEn : "",
             txtVn : ""
         }
+        this.addWord = this.addWord.bind(this)
+    }
+    addWord(){
+        const {txtEn , txtVn} = this.state
+        const {onAddWord} = this.props
+        if(txtEn.length <= 0 && txtVn.length<= 0)return
+        const word = {
+            id : Math.random(),
+            en : txtEn,
+            vn : txtVn,
+            isMemorized : false
+        }
+        onAddWord(word)
+        this.setState({txtVn : "" , txtEn : ""})
+
     }
     getShouldShowForm(){
         const shouldShowForm = this.props.shouldShowForm
+        const {onToggleForm} = this.props
         if(shouldShowForm){
             return(
                 <View>
@@ -30,13 +46,13 @@ export default class Form extends PureComponent {
                         </View>
                     <View style={{flexDirection : "row" , marginTop : DeviceWidth * 0.01 , alignItems : "center" , justifyContent : "center"}}>
                         <TouchableOpacity
-            
+                            onPress={this.addWord}
                             style={{backgroundColor : "#218838" , padding : 10 , borderRadius : 8 , marginRight : DeviceWidth * 0.03}}
                         >
                             <Text style={{fontSize : DeviceWidth * 0.08 , color : 'white' }}>Add word</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            
+                            onPress={onToggleForm}
                             style={{backgroundColor : "#C82333", padding : 10 , borderRadius : 8}}
                         >
                             <Text style={{fontSize : DeviceWidth * 0.08 , color : 'white'}}>Cancel</Text>
@@ -48,7 +64,7 @@ export default class Form extends PureComponent {
             return(
                 <View style={{alignItems : "center"  }}>
                     <TouchableOpacity
-                        
+                        onPress={onToggleForm}
                         style={{backgroundColor : "#218838" , padding : 10 , borderRadius : 8 ,width : DeviceWidth * 0.7 }}
                     >
                         <Text style={{fontSize : DeviceWidth * 0.08 , color : 'white' ,textAlign : 'center'}}>+</Text>
