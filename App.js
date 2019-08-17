@@ -4,12 +4,13 @@ import List from './components/List';
 import Form from './components/Form';
 import MyFlatlist from './components/MyFlatlist';
 import Filter from './components/Filter';
+import Box from './components/Box';
 
 
 export default class App extends Component {
   render() {
     return (
-        <List/>
+        <Box/>
     );
   }
 }

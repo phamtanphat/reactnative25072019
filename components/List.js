@@ -21,7 +21,6 @@ export default class List extends PureComponent {
             ],
             shouldShowForm : false,
             filterPick : 'Show_All'
-            
         }
         this.toggleForm = this.toggleForm.bind(this)
     }
@@ -56,9 +55,6 @@ export default class List extends PureComponent {
                     }).map(word => <Word word={word} key={word.id}/>)}
                 </ScrollView>
             </SafeAreaView>
-            
-                
-            
         )
     }
 }
