@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import List from './components/List';
 import Form from './components/Form';
 import MyFlatlist from './components/MyFlatlist';
+import Filter from './components/Filter';
 
 
 export default class App extends Component {

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Text, View , Dimensions , TouchableOpacity , ScrollView , TextInput , SafeAreaView} from 'react-native'
-
+import { Dropdown } from 'react-native-material-dropdown';
 
 const DeviceHeight = Dimensions.get('window').height
 const DeviceWidth = Dimensions.get("window").width
@@ -18,7 +18,14 @@ export default class List extends PureComponent {
             ],
             shouldShowForm : false,
             txtEn : "",
-            txtVn : ""
+            txtVn : "",
+            filterMode : [
+                {value : "Show_ALL"},
+                {value : "Show_Forgot"},
+                {value : "Show_Memorized"}
+            ],
+            filterPick : 'Show_All'
+            
         }
         this.toggleForm = this.toggleForm.bind(this)
     }
@@ -116,7 +123,7 @@ export default class List extends PureComponent {
             )
         }else{
             return(
-                <View style={{alignItems : "center" }}>
+                <View style={{alignItems : "center"  }}>
                     <TouchableOpacity
                         onPress={this.toggleForm}
                         style={{backgroundColor : "#218838" , padding : 10 , borderRadius : 8 ,width : DeviceWidth * 0.7 }}
@@ -128,11 +135,26 @@ export default class List extends PureComponent {
             )
         }
     }
+    getFilter(){
+        return (
+            <View style={{ alignItems : 'center', marginTop : DeviceWidth * 0.05 , marginBottom : DeviceWidth * 0.05}}>
+                 <Dropdown
+                    value={this.state.filterPick}
+                    containerStyle={{width : DeviceWidth * 0.7 , height : DeviceWidth * 0.1 , borderRadius : 5 , borderWidth : 1 , paddingLeft : DeviceWidth * 0.02}}
+                    inputContainerStyle={{ borderBottomColor: 'transparent' }}
+                    dropdownOffset={{top: DeviceWidth * 0.01, left : 0}}
+                    data={this.state.filterMode}
+                    onChangeText={text => this.setState({filterPick : text})}
+                />
+            </View>
+        )
+    }
     render() {
         return (
             <SafeAreaView style={{flex : 1}}>
                 <ScrollView style={{flex : 1 }}>
                     {this.getShouldShowForm()}
+                    {this.getFilter()}
                     {this.state.words.map(word =>this.getWordItem(word))}
                 </ScrollView>
             </SafeAreaView>

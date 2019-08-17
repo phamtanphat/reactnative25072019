@@ -16,12 +16,11 @@ export default class Filter extends PureComponent {
         }
     }
     render() {
-        
         return (
             <View style={{flex : 1 , justifyContent : 'center' , alignItems : 'center'}}>
                  <Dropdown
                     value={this.state.filterPick}
-                    containerStyle={{width : DeviceWidth * 0.5 , height : DeviceWidth * 0.1 , borderRadius : 5 , borderWidth : 1 , paddingLeft : DeviceWidth * 0.02}}
+                    containerStyle={{width : DeviceWidth * 0.7 , height : DeviceWidth * 0.1 , borderRadius : 5 , borderWidth : 1 , paddingLeft : DeviceWidth * 0.02}}
                     inputContainerStyle={{ borderBottomColor: 'transparent' }}
                     dropdownOffset={{top: DeviceWidth * 0.01, left : 0}}
                     data={this.state.filterMode}
