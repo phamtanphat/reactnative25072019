@@ -24,7 +24,7 @@ export default class Word extends PureComponent {
                             <Text style={{fontSize : 20 , color : 'white'}}>{ isMemorized ? "Forgot" : "isMemorized"}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity  
-                            
+                        
                             style={{backgroundColor : "orange" , padding : 10 , borderRadius : 5}}
                         >
                             <Text style={{fontSize : 25 , color :  'white' }}>Remove</Text>
