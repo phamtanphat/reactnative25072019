@@ -24,6 +24,7 @@ export default class List extends PureComponent {
         }
         this.toggleForm = this.toggleForm.bind(this)
         this.onRemoveWord = this.onRemoveWord.bind(this)
+        this.onToggleWord = this.onToggleWord.bind(this)
     }
     onRemoveWord(id){
         const words = this.state.words.filter(item => {
@@ -32,14 +33,13 @@ export default class List extends PureComponent {
         })
         this.setState({words})
     }
-    toggleWord(id){
+    onToggleWord(id){
         const newWords = this.state.words.map(item => {
             if(item.id !== id) return item
             return {...item , isMemorized : !item.isMemorized}
         })
         this.setState({words : newWords})
     }
-    
     toggleForm(){
         this.setState({shouldShowForm : !this.state.shouldShowForm})
     }
@@ -56,7 +56,8 @@ export default class List extends PureComponent {
                     }).map(word => <Word 
                                         word={word} 
                                         key={word.id}
-                                        onRemoveWord={this.onRemoveWord}/>)}
+                                        onRemoveWord={this.onRemoveWord}
+                                        onToggleWord={this.onToggleWord}/>)}
                 </ScrollView>
             </SafeAreaView>
         )
