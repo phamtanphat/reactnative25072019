@@ -19,7 +19,7 @@ let defaultState = {
       {id : "a6" , en : "Six" , vn : "Sáu" , isMemorized : true},
   ],
   shouldShowForm : false,
-  filterPick : 'Show_All'
+  filterPick : 'Show_Forgot'
 }
 
 let store = createStore((state = defaultState , action) => {

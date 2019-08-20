@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react'
 import { Text, View , Dimensions} from 'react-native'
 import { Dropdown } from 'react-native-material-dropdown';
+import {connect} from 'react-redux'
 
 const DeviceWidth = Dimensions.get("window").width;
-export default class Filter extends PureComponent {
+class Filter extends PureComponent {
     constructor(props){
         super(props)
         this.state = {
@@ -31,3 +32,7 @@ export default class Filter extends PureComponent {
         )
     }
 }
+const mapStateToProps = function(state){
+    return {filterPick : state.filterPick}
+}
+export default connect(mapStateToProps)(Filter)
