@@ -19,11 +19,17 @@ let defaultState = {
       {id : "a6" , en : "Six" , vn : "Sáu" , isMemorized : true},
   ],
   shouldShowForm : false,
-  filterPick : 'Show_Forgot'
+  filterPick : 'Show_All'
 }
 
 let store = createStore((state = defaultState , action) => {
-   
+    if(action.type === "TOGGLE_WORD"){
+        const newWords = state.words.map(item => {
+          if(item.id !== action.id) return item
+          return {...item , isMemorized : !item.isMemorized}
+        })
+        return {...state ,words : newWords}
+    }
     return state
 })
 

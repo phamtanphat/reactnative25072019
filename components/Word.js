@@ -1,11 +1,10 @@
 import React, { PureComponent } from 'react'
 import { Text, View , Dimensions , TouchableOpacity , Alert } from 'react-native'
-
+import {connect} from 'react-redux'
 const DeviceHeight = Dimensions.get('window').height
-export default class Word extends PureComponent {
+class Word extends PureComponent {
     render() {
         let {en , vn , isMemorized , id} = this.props.word
-        let {onRemoveWord , onToggleWord} = this.props
         return (
             <View 
                 key={id}
@@ -19,7 +18,7 @@ export default class Word extends PureComponent {
                 </View>
                 <View style={{flexDirection : 'row' , justifyContent : 'space-around' , paddingBottom : 5}}>
                         <TouchableOpacity
-                            onPress={() => onToggleWord(id)}
+                            onPress={() => this.props.dispatch({type : "TOGGLE_WORD" , id})}
                             style={{backgroundColor :  isMemorized ? "green" : "red" , padding : 10 , borderRadius : 5}}
                         >
                             <Text style={{fontSize : 20 , color : 'white'}}>{ isMemorized ? "Forgot" : "isMemorized"}</Text>
@@ -44,3 +43,4 @@ export default class Word extends PureComponent {
         )
     }
 }
+export default connect()(Word)
