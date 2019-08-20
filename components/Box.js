@@ -14,4 +14,7 @@ class Box extends PureComponent {
         )
     }
 }
-export default connect(state => {return {count : state.count}})(Box)
+const mapStateToProps = function(state){
+    return {count : state.count}
+}
+export default connect(mapStateToProps)(Box)
