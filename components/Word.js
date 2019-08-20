@@ -29,7 +29,7 @@ class Word extends PureComponent {
                                     "Xác nhận thay đổi",
                                     "Bạn có muốn xoá tự vừng không?",
                                     [
-                                        {text : "Có" , onPress : () => {onRemoveWord(id)}},
+                                        {text : "Có" , onPress : () => {this.props.dispatch({type : "REMOVE_WORD" , id})}},
                                         {text : "Không" , style : 'cancel' }
                                     ]
                                 ,{cancelable :  false })

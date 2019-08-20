@@ -23,14 +23,21 @@ let defaultState = {
 }
 
 let store = createStore((state = defaultState , action) => {
-    if(action.type === "TOGGLE_WORD"){
+    switch(action.type){
+      case "TOGGLE_WORD" :{ 
         const newWords = state.words.map(item => {
           if(item.id !== action.id) return item
           return {...item , isMemorized : !item.isMemorized}
         })
         return {...state ,words : newWords}
+      }
+      case "REMOVE_WORD" :{
+        const newWords = state.words.filter(item => item.id !== action.id)
+        return {...state,words : newWords} 
+      } 
+      default : return state
     }
-    return state
+    
 })
 
 export default class App extends Component {

@@ -10,7 +10,7 @@ class List extends PureComponent {
         return (
             <SafeAreaView style={{flex : 1}}>
                 <ScrollView style={{flex : 1}}>
-                    <Form/>
+                    <Form />
                     <Filter />
                     {this.props.words.filter(item => {
                         if(this.props.filterPick === 'Show_Forgot' && !item.isMemorized) return false 
