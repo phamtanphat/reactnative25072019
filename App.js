@@ -36,6 +36,14 @@ let store = createStore((state = defaultState , action) => {
         const newWords = state.words.filter(item => item.id !== action.id)
         return {...state,words : newWords} 
       } 
+      case "FILTER_MODE" : return {...state , filterPick : action.filterPick}
+      case "TOGGLE_FORM" : return {...state , shouldShowForm : !state.shouldShowForm}
+      case "ADD_WORD" : {
+         const newWords = Object.assign([] , state.words)
+         newWords.unshift(action.word)
+
+         return {...state,shouldShowForm : false , words : newWords}
+      }
       default : return state
     }
     
@@ -45,10 +53,10 @@ let store = createStore((state = defaultState , action) => {
 export default class App extends Component {
   render() {
     return (
-      // <Provider store={store}>
-      //     <List/>
-      // </Provider>
-      <Myicon/>
+      <Provider store={store}>
+          <List/>
+      </Provider>
+      // <Myicon/>
     );
   }
 }

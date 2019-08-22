@@ -25,7 +25,7 @@ class Filter extends PureComponent {
                     inputContainerStyle={{ borderBottomColor: 'transparent' }}
                     dropdownOffset={{top: DeviceWidth * 0.01, left : 0}}
                     data={this.state.filterMode}
-                    onChangeText={text => onFilterMode(text)}
+                    onChangeText={text => this.props.dispatch({type : "FILTER_MODE" , filterPick : text})}
     
                 />
             </View>

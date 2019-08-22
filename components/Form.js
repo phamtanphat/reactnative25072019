@@ -31,13 +31,22 @@ class Form extends PureComponent {
                         </View>
                     <View style={{flexDirection : "row" , marginTop : DeviceWidth * 0.01 , alignItems : "center" , justifyContent : "center"}}>
                         <TouchableOpacity
-                            
+                            onPress={() => {
+                                const newWord = {
+                                    id : Math.random(),
+                                    en : this.state.txtEn,
+                                    vn : this.state.txtVn,
+                                    isMemorized : false
+                                }
+                                this.setState({txtVn : "" ,txtEn : ""})
+                                this.props.dispatch({type : "ADD_WORD" , word : newWord})
+                            }}
                             style={{backgroundColor : "#218838" , padding : 10 , borderRadius : 8 , marginRight : DeviceWidth * 0.03}}
                         >
                             <Text style={{fontSize : DeviceWidth * 0.08 , color : 'white' }}>Add word</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            
+                            onPress={() => this.props.dispatch({type : "TOGGLE_FORM"})}
                             style={{backgroundColor : "#C82333", padding : 10 , borderRadius : 8}}
                         >
                             <Text style={{fontSize : DeviceWidth * 0.08 , color : 'white'}}>Cancel</Text>
@@ -49,7 +58,7 @@ class Form extends PureComponent {
             return(
                 <View style={{alignItems : "center"  }}>
                     <TouchableOpacity
-                        
+                        onPress={() => this.props.dispatch({type : "TOGGLE_FORM"})}
                         style={{backgroundColor : "#218838" , padding : 10 , borderRadius : 8 ,width : DeviceWidth * 0.7 }}
                     >
                         <Text style={{fontSize : DeviceWidth * 0.08 , color : 'white' ,textAlign : 'center'}}>+</Text>
