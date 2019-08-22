@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import { createStore } from 'redux'
+import { createStore ,combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 
 import List from './components/List';
@@ -10,45 +10,55 @@ import Filter from './components/Filter';
 import Box from './components/Box';
 import Myicon from './components/Myicon';
 
-let defaultState = {
-  words : [
-      {id : "a1" , en : "One" , vn : "Một" , isMemorized : true},
-      {id : "a2" , en : "Two" , vn : "Hai" , isMemorized : false},
-      {id : "a3" , en : "Three" , vn : "Ba" , isMemorized : false},
-      {id : "a4" , en : "Four" , vn : "Bốn" , isMemorized : true},
-      {id : "a5" , en : "Five" , vn : "Năm" , isMemorized : true},
-      {id : "a6" , en : "Six" , vn : "Sáu" , isMemorized : true},
-  ],
-  shouldShowForm : false,
-  filterPick : 'Show_All'
+const defaultWords = [
+  {id : "a1" , en : "One" , vn : "Một" , isMemorized : true},
+  {id : "a2" , en : "Two" , vn : "Hai" , isMemorized : false},
+  {id : "a3" , en : "Three" , vn : "Ba" , isMemorized : false},
+  {id : "a4" , en : "Four" , vn : "Bốn" , isMemorized : true},
+  {id : "a5" , en : "Five" , vn : "Năm" , isMemorized : true},
+  {id : "a6" , en : "Six" , vn : "Sáu" , isMemorized : true},
+]
+
+// function reducer(state = defaultState , action){
+//   switch(action.type){
+//     case "TOGGLE_WORD" :{ 
+//       const newWords = state.words.map(item => {
+//         if(item.id !== action.id) return item
+//         return {...item , isMemorized : !item.isMemorized}
+//       })
+//       return {...state ,words : newWords}
+//     }
+//     case "REMOVE_WORD" :{
+//       const newWords = state.words.filter(item => item.id !== action.id)
+//       return {...state,words : newWords} 
+//     } 
+//     case "FILTER_MODE" : return {...state , filterPick : action.filterPick}
+//     case "TOGGLE_FORM" : return {...state , shouldShowForm : !state.shouldShowForm}
+//     case "ADD_WORD" : {
+//        const newWords = Object.assign([] , state.words)
+//        newWords.unshift(action.word)
+
+//        return {...state,shouldShowForm : false , words : newWords}
+//     }
+//     default : return state
+//   } 
+// }
+function wordsReducer(state = defaultWords , action){
+  return state;
 }
-
-let store = createStore((state = defaultState , action) => {
-    switch(action.type){
-      case "TOGGLE_WORD" :{ 
-        const newWords = state.words.map(item => {
-          if(item.id !== action.id) return item
-          return {...item , isMemorized : !item.isMemorized}
-        })
-        return {...state ,words : newWords}
-      }
-      case "REMOVE_WORD" :{
-        const newWords = state.words.filter(item => item.id !== action.id)
-        return {...state,words : newWords} 
-      } 
-      case "FILTER_MODE" : return {...state , filterPick : action.filterPick}
-      case "TOGGLE_FORM" : return {...state , shouldShowForm : !state.shouldShowForm}
-      case "ADD_WORD" : {
-         const newWords = Object.assign([] , state.words)
-         newWords.unshift(action.word)
-
-         return {...state,shouldShowForm : false , words : newWords}
-      }
-      default : return state
-    }
-    
-    
+function shouldShowFormReducer(state = false , action){
+  return state
+}
+function filterPickReducer(state = 'Show_All' , action){
+  return state
+}
+const reducer = combineReducers({
+  words : wordsReducer,
+  shouldShowForm : shouldShowFormReducer,
+  filterPick : filterPickReducer
 })
+
+let store = createStore(reducer)
 
 export default class App extends Component {
   render() {
