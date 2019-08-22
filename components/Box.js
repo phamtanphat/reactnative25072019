@@ -3,6 +3,7 @@ import { Text, View  } from 'react-native'
 import Child from './Child';
 import {connect} from 'react-redux'
 
+
 class Box extends PureComponent {
 
     render() {
@@ -10,6 +11,7 @@ class Box extends PureComponent {
             <View style={{flex : 1 , flexDirection : "column" , justifyContent : "center" , alignItems : "center"}}>
                 <Text style={{fontSize : 30 , color : "red"}}> Value = {this.props.count}</Text>
                 <Child />
+                
             </View>
         )
     }

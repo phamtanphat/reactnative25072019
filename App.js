@@ -8,6 +8,7 @@ import Form from './components/Form';
 import MyFlatlist from './components/MyFlatlist';
 import Filter from './components/Filter';
 import Box from './components/Box';
+import Myicon from './components/Myicon';
 
 let defaultState = {
   words : [
@@ -38,14 +39,16 @@ let store = createStore((state = defaultState , action) => {
       default : return state
     }
     
+    
 })
 
 export default class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-          <List/>
-      </Provider>
+      // <Provider store={store}>
+      //     <List/>
+      // </Provider>
+      <Myicon/>
     );
   }
 }
