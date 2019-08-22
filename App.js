@@ -44,7 +44,17 @@ const defaultWords = [
 //   } 
 // }
 function wordsReducer(state = defaultWords , action){
-  return state;
+  switch(action.type){
+    case "TOGGLE_WORD" : {
+      const newWords = state.map(item => {
+        if(item.id !== action.id) return item
+        return {...item , isMemorized : !item.isMemorized}
+      })
+      return newWords
+    }
+    default : return state;
+  }
+  
 }
 function shouldShowFormReducer(state = false , action){
   return state
