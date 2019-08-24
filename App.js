@@ -10,6 +10,9 @@ import Filter from './components/Filter';
 import Box from './components/Box';
 import Myicon from './components/Myicon';
 
+import store from './redux/store';
+
+
 export default class App extends Component {
   render() {
     return (
