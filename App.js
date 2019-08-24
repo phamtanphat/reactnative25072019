@@ -28,11 +28,11 @@ const defaultWords = [
 //       })
 //       return {...state ,words : newWords}
 //     }
-//     case "REMOVE_WORD" :{
-//       const newWords = state.words.filter(item => item.id !== action.id)
-//       return {...state,words : newWords} 
-//     } 
-//     case "FILTER_MODE" : return {...state , filterPick : action.filterPick}
+    // case "REMOVE_WORD" :{
+    //   const newWords = state.words.filter(item => item.id !== action.id)
+    //   return {...state,words : newWords} 
+    // } 
+    // case "FILTER_MODE" : return {...state , filterPick : action.filterPick}
 //     case "TOGGLE_FORM" : return {...state , shouldShowForm : !state.shouldShowForm}
 //     case "ADD_WORD" : {
 //        const newWords = Object.assign([] , state.words)
@@ -52,15 +52,36 @@ function wordsReducer(state = defaultWords , action){
       })
       return newWords
     }
+    case "REMOVE_WORD" :{
+      const newWords = state.filter(item => item.id !== action.id)
+      return newWords
+    }
+    case "ADD_WORD" : {
+      const newWords = Object.assign([] , state)
+      newWords.unshift(action.word)
+      return newWords
+    }
     default : return state;
+  }
+}
+function shouldShowFormReducer(state = false , action){
+  switch(action.type){
+    case "TOGGLE_FORM" : 
+      return !state
+    case "ADD_WORD" : 
+      return false
+    default : 
+      return state
   }
   
 }
-function shouldShowFormReducer(state = false , action){
-  return state
-}
 function filterPickReducer(state = 'Show_All' , action){
-  return state
+  switch(action.type){
+    case "FILTER_MODE" : 
+      return action.filterPick
+    default : 
+      return state
+  }
 }
 const reducer = combineReducers({
   words : wordsReducer,
