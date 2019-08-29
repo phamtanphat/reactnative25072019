@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Text, View , Dimensions , TouchableOpacity , Alert } from 'react-native'
 import {connect} from 'react-redux'
+import * as actioncreator from '../redux/action/actionCreator'
 const DeviceHeight = Dimensions.get('window').height
 class Word extends PureComponent {
     render() {
@@ -18,7 +19,7 @@ class Word extends PureComponent {
                 </View>
                 <View style={{flexDirection : 'row' , justifyContent : 'space-around' , paddingBottom : 5}}>
                         <TouchableOpacity
-                            onPress={() => this.props.dispatch({type : "TOGGLE_WORD" , id})}
+                            onPress={() => this.props.toggleWord(id)}
                             style={{backgroundColor :  isMemorized ? "green" : "red" , padding : 10 , borderRadius : 5}}
                         >
                             <Text style={{fontSize : 20 , color : 'white'}}>{ isMemorized ? "Forgot" : "isMemorized"}</Text>
@@ -43,4 +44,6 @@ class Word extends PureComponent {
         )
     }
 }
-export default connect()(Word)
+
+
+export default connect(null ,actioncreator )(Word)

@@ -1,0 +1,5 @@
+export const TOGGLE_WORD = "TOGGLE_WORD"
+export const REMOVE_WORD = "REMOVE_WORD"
+export const ADD_WORD = "ADD_WORD"
+export const TOGGLE_FORM = "TOGGLE_FORM"
+export const FILTER_MODE = "FILTER_MODE"
