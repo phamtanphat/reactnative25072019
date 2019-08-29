@@ -1,13 +1,10 @@
-const defaultWords = [
-  { id: "a1", en: "One", vn: "Một", isMemorized: true },
-  { id: "a2", en: "Two", vn: "Hai", isMemorized: false },
-  { id: "a3", en: "Three", vn: "Ba", isMemorized: false },
-  { id: "a4", en: "Four", vn: "Bốn", isMemorized: true },
-  { id: "a5", en: "Five", vn: "Năm", isMemorized: true },
-  { id: "a6", en: "Six", vn: "Sáu", isMemorized: true }
-];
-export function wordsReducer(state = defaultWords, action) {
+import * as actionType from '../action/actionType'
+
+export function wordsReducer(state = [], action) {
   switch (action.type) {
+    case actionType.GET_ALL_WORD : {
+        return state.concat(action.words)
+    }
     case "TOGGLE_WORD": {
       const newWords = state.map(item => {
         if (item.id !== action.id) return item;

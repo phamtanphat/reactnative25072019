@@ -4,13 +4,10 @@ import Word from './Word';
 import Form from './Form';
 import Filter from './Filter';
 import {connect} from 'react-redux'
-import axios from 'axios'
+import * as actioncreator from '../redux/action/actionCreator'
 class List extends PureComponent {
     componentWillMount(){
-        const URL = "https://server2301.herokuapp.com/word"
-        axios.get(URL)
-        .then(response => console.log(response.data.words))
-        .catch(error => console.log(error.message))
+        this.props.getAllWord()
     }
     render() {
         return (
@@ -34,4 +31,4 @@ const mapStateToProps = function(state){
     return {words : state.words , filterPick : state.filterPick}
 }
 
-export default connect(mapStateToProps)(List)
+export default connect(mapStateToProps,actioncreator)(List)
