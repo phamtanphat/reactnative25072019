@@ -4,8 +4,14 @@ import Word from './Word';
 import Form from './Form';
 import Filter from './Filter';
 import {connect} from 'react-redux'
-
+import axios from 'axios'
 class List extends PureComponent {
+    componentWillMount(){
+        const URL = "https://server2301.herokuapp.com/word"
+        axios.get(URL)
+        .then(response => console.log(response.data.words))
+        .catch(error => console.log(error.message))
+    }
     render() {
         return (
             <SafeAreaView style={{flex : 1}}>
