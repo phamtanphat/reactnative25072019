@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { Text, View , Dimensions} from 'react-native'
 import { Dropdown } from 'react-native-material-dropdown';
 import {connect} from 'react-redux'
-
+import * as actioncreator from '../redux/action/actionCreator'
 const DeviceWidth = Dimensions.get("window").width;
 class Filter extends PureComponent {
     constructor(props){
@@ -25,7 +25,7 @@ class Filter extends PureComponent {
                     inputContainerStyle={{ borderBottomColor: 'transparent' }}
                     dropdownOffset={{top: DeviceWidth * 0.01, left : 0}}
                     data={this.state.filterMode}
-                    onChangeText={text => this.props.dispatch({type : "FILTER_MODE" , filterPick : text})}
+                    onChangeText={text => this.props.setFilterMode(text)}
     
                 />
             </View>
@@ -35,4 +35,4 @@ class Filter extends PureComponent {
 const mapStateToProps = function(state){
     return {filterPick : state.filterPick}
 }
-export default connect(mapStateToProps)(Filter)
+export default connect(mapStateToProps , actioncreator)(Filter)

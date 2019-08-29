@@ -30,7 +30,7 @@ class Word extends PureComponent {
                                     "Xác nhận thay đổi",
                                     "Bạn có muốn xoá tự vừng không?",
                                     [
-                                        {text : "Có" , onPress : () => {this.props.dispatch({type : "REMOVE_WORD" , id})}},
+                                        {text : "Có" , onPress : () => {this.props.removeWord(id)}},
                                         {text : "Không" , style : 'cancel' }
                                     ]
                                 ,{cancelable :  false })
@@ -45,5 +45,4 @@ class Word extends PureComponent {
     }
 }
 
-
-export default connect(null ,actioncreator )(Word)
+export default connect(null , actioncreator )(Word)
