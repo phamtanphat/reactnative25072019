@@ -7,13 +7,13 @@ export function wordsReducer(state = [], action) {
     }
     case "TOGGLE_WORD": {
       const newWords = state.map(item => {
-        if (item.id !== action.id) return item;
+        if (item._id !== action._id) return item;
         return { ...item, isMemorized: !item.isMemorized };
       });
       return newWords;
     }
     case "REMOVE_WORD": {
-      const newWords = state.filter(item => item.id !== action.id);
+      const newWords = state.filter(item => item._id !== action._id);
       return newWords;
     }
     case "ADD_WORD": {

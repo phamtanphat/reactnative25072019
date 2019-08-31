@@ -14,14 +14,8 @@ class Form extends PureComponent {
         this.addWord = this.addWord.bind(this)
     }
     addWord(){
-        const newWord = {
-            id : Math.random(),
-            en : this.state.txtEn,  
-            vn : this.state.txtVn,
-            isMemorized : false
-        }
         this.setState({txtVn : "" ,txtEn : ""})
-        this.props.addWord(newWord)
+        this.props.addWord(this.state.txtEn , this.state.txtVn)
     }
    
     getShouldShowForm(){

@@ -21,7 +21,7 @@ class List extends PureComponent {
                         return true
                     }).map(word => <Word 
                                         word={word} 
-                                        key={word.id}/>)}
+                                        key={word._id}/>)}
                 </ScrollView>
             </SafeAreaView>
         )

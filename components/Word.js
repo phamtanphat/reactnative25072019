@@ -5,10 +5,10 @@ import * as actioncreator from '../redux/action/actionCreator'
 const DeviceHeight = Dimensions.get('window').height
 class Word extends PureComponent {
     render() {
-        let {en , vn , isMemorized , id} = this.props.word
+        let {en , vn , isMemorized , _id} = this.props.word
         return (
             <View 
-                key={id}
+                key={_id}
                 style={{ flexDirection : 'column' , height : DeviceHeight * 0.2 , margin : 10 , backgroundColor : 'gainsboro' , padding : 10 , borderRadius : 5}}>
                 <View style={{flexDirection : 'row' , justifyContent : 'space-around' , paddingBottom : 5}}>
                     <Text style={{fontSize : 30 , color :  'green' }}>{en}</Text>
@@ -19,7 +19,7 @@ class Word extends PureComponent {
                 </View>
                 <View style={{flexDirection : 'row' , justifyContent : 'space-around' , paddingBottom : 5}}>
                         <TouchableOpacity
-                            onPress={() => this.props.toggleWord(id)}
+                            onPress={() => this.props.toggleWord(_id, !isMemorized)}
                             style={{backgroundColor :  isMemorized ? "green" : "red" , padding : 10 , borderRadius : 5}}
                         >
                             <Text style={{fontSize : 20 , color : 'white'}}>{ isMemorized ? "Forgot" : "isMemorized"}</Text>
@@ -30,7 +30,7 @@ class Word extends PureComponent {
                                     "Xác nhận thay đổi",
                                     "Bạn có muốn xoá tự vừng không?",
                                     [
-                                        {text : "Có" , onPress : () => {this.props.removeWord(id)}},
+                                        {text : "Có" , onPress : () => {this.props.removeWord(_id)}},
                                         {text : "Không" , style : 'cancel' }
                                     ]
                                 ,{cancelable :  false })
